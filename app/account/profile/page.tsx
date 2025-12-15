@@ -1,5 +1,8 @@
 import SelectCountry from "@/app/_components/SelectCountry";
-
+export const metadata = {
+  title: "Profile",
+  description: "Update your guest profile information at The Wild Oasis.",
+};
 export default function Page() {
   // CHANGE
   const countryFlag = "pt.jpg";

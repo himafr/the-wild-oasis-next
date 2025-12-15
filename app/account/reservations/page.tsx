@@ -1,8 +1,12 @@
-import ReservationCard from "./ReservationCard";
-
+import { Booking } from "@/app/_types/types";
+import ReservationCard from "@/app/_components/ReservationCard";
+export const metadata = {
+  title: "Reservations",
+  description: "View and manage your reservations at The Wild Oasis.",
+};
 export default function Page() {
   // CHANGE
-  const bookings = [];
+  const bookings: Booking[] = [];
 
   return (
     <div>

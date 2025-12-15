@@ -16,11 +16,12 @@ import "@/app/_styles/globals.css"
 export default function Layout({ children }: { children: ReactNode }) {
   return (
     <html>
-      <body   cz-shortcut-listen="true" className={josefin.className+` antialiased bg-primary-950 min-h-screen text-primary-100 flex flex-col `}>
+      <body   cz-shortcut-listen="true" className={josefin.className+` antialiased bg-primary-950 min-h-screen text-primary-100 flex flex-col  relative`}>
         <Header />
-        <div className="flex-1 px-8 py-12 "> 
+        <div className="flex-1 px-8 py-12 grid"> 
 
-        <main className="max-w-7xl mx-auto">{children}</main>
+
+        <main className="max-w-8xl mx-auto w-full">{children}</main>
         </div>
       </body>
     </html>
