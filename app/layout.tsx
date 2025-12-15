@@ -1,16 +1,27 @@
-import NavLink from "./components/NavLink";
+import { ReactNode } from "react";
+import {Josefin_Sans} from "next/font/google";
+import Header from "./_components/Header";
+
+const josefin=Josefin_Sans({
+  subsets:['latin'],
+  display:"swap",
+  
+})
+
 export const metadata={
-  title:"The Wild Oasis",
-}
-export default function Layout({ children }: { children: React.ReactNode }) {
+  title: {template:"%s | The Wild Oasis",
+  default:"Welcome | The Wild Oasis"},
+  }
+import "@/app/_styles/globals.css"
+export default function Layout({ children }: { children: ReactNode }) {
   return (
     <html>
-      <body>
-        <header>
-          <img src="logo.png" />
-        <NavLink />
-        </header>
-        <main>{children}</main>
+      <body   cz-shortcut-listen="true" className={josefin.className+` antialiased bg-primary-950 min-h-screen text-primary-100 flex flex-col `}>
+        <Header />
+        <div className="flex-1 px-8 py-12 "> 
+
+        <main className="max-w-7xl mx-auto">{children}</main>
+        </div>
       </body>
     </html>
   );
