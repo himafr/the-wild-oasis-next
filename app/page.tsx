@@ -8,9 +8,10 @@ export default async function Page() {
     const res=await fetch('https://nothingIsUseful.org');
     if(res.ok){
       const data =await res.json();
+      console.log(data)
     }else{
-     console.log(res.url)
 
+     console.error(res.url)
     }
   }catch(e ){
     if(e instanceof Error)
