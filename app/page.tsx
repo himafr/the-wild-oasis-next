@@ -11,6 +11,7 @@ export default async function Page() {
       console.log(data)
     }else{
 
+      
      console.error(res.url)
     }
   }catch(e ){
