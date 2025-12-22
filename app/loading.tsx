@@ -1,8 +1,8 @@
+import Spinner from "@/app/_components/Spinner"
+
 const loading : React.FC =()=> {
     return (
-        <div>
-           LOADING DATA... 
-        </div>
+       <Spinner />
     )
 }
 

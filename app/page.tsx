@@ -1,4 +1,3 @@
-import Counter from "@/app/_components/Counter";
 import Image from "next/image";
 import Link from "next/link";
 import bg from "@/public/bg.png"
