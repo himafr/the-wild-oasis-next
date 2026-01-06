@@ -1,5 +1,5 @@
 import { getCabins } from "../_lib/data-service";
-import { Cabin } from "../_types/types";
+import { Cabin } from "../@types/types";
 import CabinCard from "./CabinCard";
 
 const CabinList : React.FC =async()=> {

@@ -1,6 +1,6 @@
 import { eachDayOfInterval } from 'date-fns';
 import { supabase } from './supabase';
-import { Cabin,Booking,Guest } from "@/app/_types/types";
+import { Cabin,Booking,Guest } from "@/app/@types/types";
 import { notFound } from 'next/navigation';
 /////////////
 // GET

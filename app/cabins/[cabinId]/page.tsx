@@ -1,5 +1,5 @@
 import { getCabin } from "@/app/_lib/data-service";
-import { Cabin } from "@/app/_types/types";
+import { Cabin } from "@/app/@types/types";
 import { EyeSlashIcon, MapPinIcon, UsersIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 

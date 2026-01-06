@@ -1,4 +1,4 @@
-import { Booking } from "@/app/_types/types";
+import { Booking } from "@/app/@types/types";
 import ReservationCard from "@/app/_components/ReservationCard";
 export const metadata = {
   title: "Reservations",
