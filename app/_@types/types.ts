@@ -5,7 +5,7 @@ export interface Cabin {
   regularPrice: number;
   discount: number;
   image: string;
-  description?:string;
+  description?: string;
 }
 export interface Booking {
   id: number;
@@ -28,4 +28,18 @@ export interface Guest {
   nationalID: string;
   nationality: string;
   countryFlag: string;
+}
+
+export interface Country {
+  name: string;
+  flag: string;
+  independent: boolean;
+}
+export interface Settings {
+  id: number;
+  created_at: string;
+  minBookingLength: number;
+  maxBookingLength: number;
+  maxGuestsPerBooking: number;
+  breakfastPrice: number;
 }

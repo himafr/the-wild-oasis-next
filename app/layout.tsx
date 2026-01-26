@@ -13,6 +13,7 @@ export const metadata={
   default:"Welcome | The Wild Oasis"},
   }
 import "@/app/_styles/globals.css"
+import { ReservationProvider } from "./_components/ReservationContext";
 export default function Layout({ children }: { children: ReactNode }) {
   return (
     <html>
@@ -21,7 +22,11 @@ export default function Layout({ children }: { children: ReactNode }) {
         <div className="flex-1 px-8 py-12 grid"> 
 
 
-        <main className="max-w-8xl mx-auto w-full">{children}</main>
+        <main className="max-w-8xl mx-auto w-full">
+          <ReservationProvider>
+          {children}
+          </ReservationProvider>
+          </main>
         </div>
       </body>
     </html>

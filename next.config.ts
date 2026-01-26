@@ -6,11 +6,11 @@ const nextConfig: NextConfig = {
       {
         protocol: 'https',
         hostname: 'fslvzslmpmavpanfriyi.supabase.co',
-        port: '',
-        pathname: '/storage/v1/object/public/cabin-images/**',
+        pathname: '/storage/v1/object/public/**',
       },
     ],
   },
+  // output:"export",
   /* config options here */
 };
 

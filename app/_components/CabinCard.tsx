@@ -1,5 +1,5 @@
 import { UsersIcon } from "@heroicons/react/24/solid";
-import { Cabin } from "@/app/@types/types";
+import { Cabin } from "@/app/_@types/types";
 import Image from "next/image";
 import Link from "next/link";
 
