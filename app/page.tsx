@@ -3,22 +3,6 @@ import Link from "next/link";
 import bg from "@/public/bg.png"
 
 export default async function Page() {
-  try{
-    const res=await fetch('https://nothingIsUseful.org');
-    if(res.ok){
-      const data =await res.json();
-      console.log(data)
-    }else{
-
-      
-     console.error(res.url)
-    }
-  }catch(e ){
-    if(e instanceof Error)
-      console.error("catch: ",e.message)
-
- }
- 
   return (
     <main className="mt-24">
          <Image src={bg} fill className="object-cover object-top" placeholder="blur" alt="Mountains and forests with two cabins" />

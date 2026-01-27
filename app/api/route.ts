@@ -1,10 +1,6 @@
-export async function GET(req: Request) {
-    console.log(req);
+export async function GET() {
   return Response.json({
-    text: "API is working",
+    text: "check you api route is working fine!",
     status: 200,
-    // method: req,
-    // url: req.url,
-    headers: Object.fromEntries(req.headers),
   });
 }
