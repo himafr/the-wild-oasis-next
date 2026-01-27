@@ -153,7 +153,7 @@ export async function getCountries() {
 /////////////
 // CREATE
 
-export async function createGuest(newGuest:Guest) {
+export async function createGuest(newGuest:Pick<Guest,'email'|'fullName'>) {
   const { data, error } = await supabase.from('guests').insert([newGuest]);
 
   if (error) {

@@ -1,3 +1,14 @@
+declare module "next-auth" {
+  interface Session {
+    user: {
+      guestId?: number;
+      email?: string | null;
+      name?: string | null;
+      image?: string | null;
+    };
+  }
+}
+
 export interface Cabin {
   id: number;
   name: string;
