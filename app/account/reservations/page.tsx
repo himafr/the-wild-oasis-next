@@ -1,12 +1,16 @@
 import { Booking } from "@/app/_@types/types";
 import ReservationCard from "@/app/_components/ReservationCard";
+import { auth } from "@/app/_lib/auth";
+import { getBookings } from "@/app/_lib/data-service";
 export const metadata = {
   title: "Reservations",
   description: "View and manage your reservations at The Wild Oasis.",
 };
-export default function Page() {
+export default async function Page() {
   // CHANGE
-  const bookings: Booking[] = [];
+  const session=await auth()
+  if(!session?.user.guestId)return;
+  const bookings: Booking[] = await getBookings(session?.user.guestId);
 
   return (
     <div>

@@ -2,6 +2,7 @@ import { eachDayOfInterval } from 'date-fns';
 import { supabase } from './supabase';
 import { Cabin,Booking,Guest, Country } from "@/app/_@types/types";
 import { notFound } from 'next/navigation';
+import { Session } from 'next-auth';
 /////////////
 // GET
 
@@ -79,8 +80,8 @@ export async function getBooking(id:Booking['id']) {
   return data;
 }
 
-export async function getBookings(guestId:Guest['id']) {
-  const { data, error, count } = await supabase
+export async function getBookings(guestId:Session['user']["guestId"]):Promise<Booking[]> {
+  const { data, error } = await supabase
     .from('bookings')
     // We actually also need data on the cabins as well. But let's ONLY take the data that we actually need, in order to reduce downloaded data.
     .select(
@@ -94,7 +95,7 @@ export async function getBookings(guestId:Guest['id']) {
     throw new Error('Bookings could not get loaded');
   }
 
-  return data;
+  return data as never;
 }
 
 export async function getBookedDatesByCabinId(cabinId:Cabin['id']) {

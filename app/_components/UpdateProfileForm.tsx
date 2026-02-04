@@ -1,60 +1,76 @@
 "use client";
+import { useFormStatus } from "react-dom";
 import { Guest } from "../_@types/types";
 import { updateProfile } from "../_lib/actions";
-import SelectCountry from "./SelectCountry"
+import SelectCountry from "./SelectCountry";
 
-const UpdateProfileForm : React.FC<{children:React.ReactNode;guest:Guest}> =({children,guest})=> {
- const {countryFlag,email,nationalID,nationality,fullName}=guest;
-    return (
-         <form action={updateProfile} className="bg-primary-900 py-8 px-12 text-lg flex gap-6 flex-col">
-        <div className="space-y-2">
-          <label>Full name</label>
-          <input
-            disabled
-            defaultValue={fullName}
-            name="fullName"
-            className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm rounded-sm disabled:cursor-not-allowed disabled:bg-gray-600 disabled:text-gray-400"
-          />
-        </div>
+const UpdateProfileForm: React.FC<{
+  children: React.ReactNode;
+  guest: Guest;
+}> = ({ children, guest }) => {
+  const { countryFlag, email, nationalID, nationality, fullName } = guest;
+  return (
+    <form
+      action={updateProfile}
+      className="bg-primary-900 py-8 px-12 text-lg flex gap-6 flex-col"
+    >
+      <div className="space-y-2">
+        <label>Full name</label>
+        <input
+          disabled
+          defaultValue={fullName}
+          name="fullName"
+          className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm rounded-sm disabled:cursor-not-allowed disabled:bg-gray-600 disabled:text-gray-400"
+        />
+      </div>
 
-        <div className="space-y-2">
-          <label>Email address</label>
-          <input
+      <div className="space-y-2">
+        <label>Email address</label>
+        <input
           defaultValue={email}
-            disabled
-            name="email"
-            className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm rounded-sm disabled:cursor-not-allowed disabled:bg-gray-600 disabled:text-gray-400"
+          disabled
+          name="email"
+          className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm rounded-sm disabled:cursor-not-allowed disabled:bg-gray-600 disabled:text-gray-400"
+        />
+      </div>
+
+      <div className="space-y-2">
+        <div className="flex items-center justify-between">
+          <label htmlFor="nationality">Where are you from?</label>
+          <img
+            src={countryFlag}
+            alt="Country flag"
+            className="h-5 rounded-sm"
           />
         </div>
+        {children}
+      </div>
 
-        <div className="space-y-2">
-          <div className="flex items-center justify-between">
-            <label htmlFor="nationality">Where are you from?</label>
-            <img
-              src={countryFlag}
-              alt="Country flag"
-              className="h-5 rounded-sm"
-            />
-          </div>
-{children}
-        </div>
+      <div className="space-y-2">
+        <label htmlFor="nationalID">National ID number</label>
+        <input
+          name="nationalID"
+          defaultValue={nationalID}
+          className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm rounded-sm"
+        />
+      </div>
 
-        <div className="space-y-2">
-          <label htmlFor="nationalID">National ID number</label>
-          <input
-            name="nationalID"
-            defaultValue={nationalID}
-            className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm rounded-sm"
-          />
-        </div>
+      <div className="flex justify-end items-center gap-6">
+        <Button/>
 
-        <div className="flex justify-end items-center gap-6">
-          <button className="bg-accent-500 px-8 py-4 text-primary-800 font-semibold hover:bg-accent-600 transition-all disabled:cursor-not-allowed disabled:bg-gray-500 disabled:text-gray-300">
-            Update profile
-          </button>
-        </div>
-      </form>
-    )
+      </div>
+    </form>
+  );
+};
+function Button() {
+  const { pending } = useFormStatus();
+  return (
+    <button className="bg-accent-500 px-8 py-4 text-primary-800 font-semibold hover:bg-accent-600 transition-all disabled:cursor-not-allowed disabled:bg-gray-500 disabled:text-gray-300"
+    disabled={pending}
+    >
+     {pending?'Uploading data':' Update profile'}
+    </button>
+  );
 }
 
-export default UpdateProfileForm
+export default UpdateProfileForm;
