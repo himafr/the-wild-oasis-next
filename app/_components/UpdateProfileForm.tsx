@@ -1,16 +1,18 @@
 "use client";
+import { Guest } from "../_@types/types";
+import { updateProfile } from "../_lib/actions";
 import SelectCountry from "./SelectCountry"
 
-const UpdateProfileForm : React.FC<{children:React.ReactNode}> =({children})=> {
-     // CHANGE
-  const countryFlag = "pt.jpg";
-  const nationality = "portugal";
+const UpdateProfileForm : React.FC<{children:React.ReactNode;guest:Guest}> =({children,guest})=> {
+ const {countryFlag,email,nationalID,nationality,fullName}=guest;
     return (
-         <form className="bg-primary-900 py-8 px-12 text-lg flex gap-6 flex-col">
+         <form action={updateProfile} className="bg-primary-900 py-8 px-12 text-lg flex gap-6 flex-col">
         <div className="space-y-2">
           <label>Full name</label>
           <input
             disabled
+            defaultValue={fullName}
+            name="fullName"
             className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm rounded-sm disabled:cursor-not-allowed disabled:bg-gray-600 disabled:text-gray-400"
           />
         </div>
@@ -18,7 +20,9 @@ const UpdateProfileForm : React.FC<{children:React.ReactNode}> =({children})=> {
         <div className="space-y-2">
           <label>Email address</label>
           <input
+          defaultValue={email}
             disabled
+            name="email"
             className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm rounded-sm disabled:cursor-not-allowed disabled:bg-gray-600 disabled:text-gray-400"
           />
         </div>
@@ -39,6 +43,7 @@ const UpdateProfileForm : React.FC<{children:React.ReactNode}> =({children})=> {
           <label htmlFor="nationalID">National ID number</label>
           <input
             name="nationalID"
+            defaultValue={nationalID}
             className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm rounded-sm"
           />
         </div>

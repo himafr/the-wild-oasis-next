@@ -53,7 +53,7 @@ export const getCabins = async function () {
 };
 
 // Guests are uniquely identified by their email address
-export async function getGuest(email:Guest['email']) {
+export async function getGuest(email:Guest['email']):Promise<Guest> {
   const { data, error } = await supabase
     .from('guests')
     .select('*')
@@ -184,20 +184,20 @@ export async function createBooking(newBooking:Booking) {
 // UPDATE
 
 // The updatedFields is an object which should ONLY contain the updated data
-export async function updateGuest({id, updatedFields}:{id:Guest['id'], updatedFields:Partial<Guest>}) {
-  const { data, error } = await supabase
-    .from('guests')
-    .update(updatedFields)
-    .eq('id', id)
-    .select()
-    .single();
+// export async function updateGuest({id, updatedFields}:{id:Guest['id'], updatedFields:Partial<Guest>}) {
+//   const { data, error } = await supabase
+//     .from('guests')
+//     .update(updatedFields)
+//     .eq('id', id)
+//     .select()
+//     .single();
 
-  if (error) {
-    console.error(error);
-    throw new Error('Guest could not be updated');
-  }
-  return data;
-}
+//   if (error) {
+//     console.error(error);
+//     throw new Error('Guest could not be updated');
+//   }
+//   return data;
+// }
 
 export async function updateBooking(id:Booking['id'], updatedFields:Partial<Booking>) {
   const { data, error } = await supabase

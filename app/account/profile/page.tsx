@@ -1,15 +1,17 @@
 import SelectCountry from "@/app/_components/SelectCountry";
 import Spinner from "@/app/_components/Spinner";
 import UpdateProfileForm from "@/app/_components/UpdateProfileForm";
+import { auth } from "@/app/_lib/auth";
+import { getGuest } from "@/app/_lib/data-service";
 import { Suspense } from "react";
 export const metadata = {
   title: "Profile",
   description: "Update your guest profile information at The Wild Oasis.",
 };
-export default function Page() {
-  // CHANGE
-  const countryFlag = "pt.jpg";
-  const nationality = "portugal";
+export default async function Page() {
+ const session = await auth()
+ if(!session?.user.email)return;
+ const guest =await getGuest(session?.user.email)
 
   return (
     <div>
@@ -22,12 +24,12 @@ export default function Page() {
         faster and smoother. See you soon!
       </p>
       <Suspense fallback={<Spinner />}>
-        <UpdateProfileForm>
+        <UpdateProfileForm guest={guest}>
           <SelectCountry
             name="nationality"
             id="nationality"
             className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm rounded-sm"
-            defaultCountry={nationality}
+            defaultCountry={guest?.nationality}
           />
         </UpdateProfileForm>
       </Suspense>
