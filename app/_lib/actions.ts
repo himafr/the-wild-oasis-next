@@ -40,16 +40,18 @@ const updatedFields={nationalID,countryFlag,nationality};
 }
 
 export async function deleteReservation(bookingId:Booking["id"]) {
+  console.log("booking")
    const session =await auth();
   if (!session) throw new Error("please login before committing this action");
   const booking:Booking
   =await getBooking(bookingId)
   if(session.user.guestId !== booking.guestId)throw new Error("your not allow to perform this action ")
-    revalidatePath("/account/reservation")
-  //  const { error } = await supabase.from('bookings').delete().eq('id', bookingId);
 
-  // if (error) {
-  //   console.error(error);
-  //   throw new Error('Booking could not be deleted');
-  // }
+     const { error } = await supabase.from('bookings').delete().eq('id', bookingId);
+    
+    if (error) {
+        console.error(error);
+        throw new Error('Booking could not be deleted');
+      }
+      revalidatePath("/account/reservation")
 }
