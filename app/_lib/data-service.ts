@@ -66,7 +66,7 @@ export async function getGuest(email:Guest['email']):Promise<Guest> {
 }
 
 export async function getBooking(id:Booking['id']) {
-  const { data, error, count } = await supabase
+  const { data, error } = await supabase
     .from('bookings')
     .select('*')
     .eq('id', id)
@@ -218,12 +218,6 @@ export async function updateBooking(id:Booking['id'], updatedFields:Partial<Book
 /////////////
 // DELETE
 
-export async function deleteBooking(id:Booking['id']) {
-  const { data, error } = await supabase.from('bookings').delete().eq('id', id);
-
-  if (error) {
-    console.error(error);
-    throw new Error('Booking could not be deleted');
-  }
-  return data;
-}
+// export async function deleteBooking(id:Booking['id']) {
+ 
+// }
