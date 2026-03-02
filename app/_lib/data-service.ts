@@ -7,7 +7,7 @@ import { Session } from 'next-auth';
 // GET
 
 
-export async function getCabin(id:Cabin['id']) {
+export async function getCabin(id:Cabin['id']):Promise<Cabin> {
   const { data, error } = await supabase
     .from('cabins')
     .select('*')
@@ -65,7 +65,7 @@ export async function getGuest(email:Guest['email']):Promise<Guest> {
   return data;
 }
 
-export async function getBooking(id:Booking['id']) {
+export async function getBooking(id:Booking['id']):Promise<Booking>{
   const { data, error } = await supabase
     .from('bookings')
     .select('*')
@@ -200,20 +200,9 @@ export async function createBooking(newBooking:Booking) {
 //   return data;
 // }
 
-export async function updateBooking(id:Booking['id'], updatedFields:Partial<Booking>) {
-  const { data, error } = await supabase
-    .from('bookings')
-    .update(updatedFields)
-    .eq('id', id)
-    .select()
-    .single();
+// export async function updateBooking(id:Booking['id'], updatedFields:Partial<Booking>) {
 
-  if (error) {
-    console.error(error);
-    throw new Error('Booking could not be updated');
-  }
-  return data;
-}
+// }
 
 /////////////
 // DELETE

@@ -29,6 +29,9 @@ export interface Booking {
   status: string;
   created_at: string;
   cabins: Cabin;
+  observations?:string;
+  cabinId:number;
+
 }
 
 export interface Guest {

@@ -1,14 +1,13 @@
 "use client"
 import { TrashIcon } from '@heroicons/react/24/solid';
 import { Booking } from '../_@types/types';
-import { deleteReservation } from '../_lib/actions';
 import { useTransition } from 'react';
 import SpinnerMini from './SpinnerMini';
 
-function DeleteReservation({ bookingId }:{bookingId:Booking["id"]}) {
+function DeleteReservation({ bookingId ,onDelete}:{bookingId:Booking["id"];onDelete:(bookingId:number)=>void}) {
   const [isPending,startTransition]=useTransition()
   function handleDelete(){
-if(confirm("are you sure you want to delete this reservation ?"))startTransition(()=>deleteReservation(bookingId))
+if(confirm("are you sure you want to delete this reservation ?"))startTransition(()=>onDelete(bookingId))
   }
   return (
     <button onClick={handleDelete} className='group flex items-center gap-2 uppercase text-xs font-bold text-primary-300 grow px-3 hover:bg-accent-600 transition-colors hover:text-primary-900'>
