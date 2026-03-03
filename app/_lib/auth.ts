@@ -1,6 +1,5 @@
-import NextAuth, { NextAuthConfig, Session } from "next-auth";
+import NextAuth, { NextAuthConfig } from "next-auth";
 import Google from "next-auth/providers/google";
-import { NextRequest } from "next/server";
 import { createGuest, getGuest } from "./data-service";
 
 const authConfig: NextAuthConfig = {
