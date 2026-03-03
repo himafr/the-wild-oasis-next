@@ -31,7 +31,17 @@ export interface Booking {
   cabins: Cabin;
   observations?:string;
   cabinId:number;
+  extrasPrice:number;
+  isPaid:boolean;
+  hasBreakfast:boolean;
+}
 
+export interface BookingData {
+    startDate: Date | undefined;
+    endDate: Date | undefined;
+    numNights: number;
+    cabinPrice: number;
+    cabinId: number;
 }
 
 export interface Guest {

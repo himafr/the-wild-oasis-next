@@ -3,7 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { auth, signIn, signOut } from "./auth";
 import { supabase } from "./supabase";
-import { Booking } from "../_@types/types";
+import { Booking, BookingData } from "../_@types/types";
 import { getBooking } from "./data-service";
 import { redirect } from "next/navigation";
 
@@ -40,6 +40,32 @@ const updatedFields={nationalID,countryFlag,nationality};
   revalidatePath("/account/profile")
 }
 
+export async function createBooking(bookingData:BookingData, formData: FormData) {
+  const session =await auth();
+  if (!session) throw new Error("please login before committing this action");
+  const newBooking={
+    ...bookingData,
+    guestId: session.user.guestId,
+    numGuests: Number(formData.get("numGuests")),
+    observations: String(formData.get("observations")),
+    extrasPrice: 0,
+    totalPrice: bookingData.cabinPrice,
+    isPaid: false,
+    hasBreakfast: false,
+    status: "unconfirmed",
+  }
+
+   const {  error } = await supabase
+    .from('bookings')
+    .insert([newBooking])
+    .select()
+    .single();
+
+  if (error) throw new Error('Booking could not be created');
+  revalidatePath(`/cabins/${bookingData.cabinId}`)
+  redirect("/cabins/thankyou")
+}
+
 export async function updateBooking(formData:FormData) {
   const bookingId=Number(formData.get("bookingId"));
   if(!bookingId) throw new Error("booking is not valid")
@@ -69,7 +95,7 @@ observations:formData.get("observations")};
 redirect("/account/reservations")
 }
 
-export async function deleteReservation(bookingId:Booking["id"]) {
+export async function deleteBooking(bookingId:Booking["id"]) {
 
   console.log("booking")
    const session =await auth();
