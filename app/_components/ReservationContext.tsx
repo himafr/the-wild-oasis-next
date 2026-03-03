@@ -3,7 +3,7 @@ import { createContext, Dispatch, SetStateAction, useContext, useState } from "r
 import { DateRange } from "react-day-picker";
 
 type ReservationContextType = {
-  range: DateRange|undefined;
+  range: any;
   setRange: Dispatch<SetStateAction<DateRange|undefined>>;
   resetRange:()=>void;
 };
